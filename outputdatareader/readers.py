@@ -16,6 +16,9 @@ class BasicReader():
             pass
         return self.holder
 
+    def result(self):
+        return self.holder
+
     def setup(self):
         pass
 
