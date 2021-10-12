@@ -5,8 +5,8 @@ class BasicReader():
 
     def read(self):
         try:
+            self.setup()
             try:
-                self.setup()
                 for line in self.scanner:
                     self.loop(line)
             except ExitLoop:
