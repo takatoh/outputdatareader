@@ -19,6 +19,9 @@ class BasicReader():
     def result(self):
         return self.holder
 
+    # Override following methods: 'setup', 'loop' and 'teardown'.
+    # At least, you must override 'loop' method.
+
     def setup(self):
         pass
 
@@ -27,6 +30,8 @@ class BasicReader():
 
     def teardown(self):
         pass
+
+    # private methods.
 
     def _exit_loop(self):
         raise ExitLoop()
