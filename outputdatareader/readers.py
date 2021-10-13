@@ -1,4 +1,4 @@
-class BasicReader():
+class Base():
     def __init__(self, scanner, holder):
         self.scanner = scanner
         self.holder = holder
