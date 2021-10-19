@@ -8,7 +8,7 @@ class LineScanner():
         return self
 
     def __next__(self):
-        self.buf(self.content.pop(0))
+        self.buf.append(self.content.pop(0))
         if len(self.buf) > self.bufsize:
             self.buf.pop(0)
         return self.buf[-1]
