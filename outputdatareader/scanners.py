@@ -8,6 +8,8 @@ class LineScanner():
         return self
 
     def __next__(self):
+        if len(self.content) == 0:
+            raise StopIteration()
         self.buf.append(self.content.pop(0))
         if len(self.buf) > self.bufsize:
             self.buf.pop(0)
@@ -19,4 +21,5 @@ class LineScanner():
 
     def _scan(self, file):
         with open(file, 'r') as f:
-            self.content = f.readlines()
+            content = f.readlines()
+        return content
