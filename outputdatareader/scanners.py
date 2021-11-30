@@ -1,4 +1,4 @@
-class LineScanner():
+class Base():
     def __init__(self, file, bufsize=5):
         self.content = self._scan(file)
         self.buf = []
@@ -19,6 +19,10 @@ class LineScanner():
         self.content.insert(0, self.buf.pop())
         return self.content[0]
 
+    def _scan(self, file):
+        pass
+
+class LineScanner(Base):
     def _scan(self, file):
         with open(file, 'r') as f:
             content = f.readlines()
