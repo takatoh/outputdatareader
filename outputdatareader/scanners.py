@@ -22,6 +22,7 @@ class Base():
     def _scan(self, file):
         pass
 
+
 class LineScanner(Base):
     def _scan(self, file):
         with open(file, 'r') as f:
