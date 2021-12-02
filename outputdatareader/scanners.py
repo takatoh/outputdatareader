@@ -22,8 +22,9 @@ class Base():
         self.content.insert(0, self.buf.pop())
         return self.content[0]
 
+    # Override this '_scan' method, in sub-class.
     def _scan(self, file):
-        pass
+        return []
 
 
 class LineScanner(Base):
