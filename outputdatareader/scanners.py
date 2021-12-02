@@ -38,8 +38,6 @@ class CsvScanner(Base):
     def _scan(self, file):
         csv_file = open(file, 'r')
         reader = csv.reader(csv_file)
-        content = []
-        for row in reader:
-            content.append(row)
+        content = [ row for row in reader ]
         csv_file.close()
         return content
