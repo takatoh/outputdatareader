@@ -36,8 +36,7 @@ class LineScanner(Base):
 
 class CsvScanner(Base):
     def _scan(self, file):
-        csv_file = open(file, 'r')
-        reader = csv.reader(csv_file)
-        content = [ row for row in reader ]
-        csv_file.close()
+        with open(file, 'r') as csv_file:
+            reader = csv.reader(csv_file)
+            content = list(reader)
         return content
