@@ -24,7 +24,7 @@ class Base():
 
     # Override this '_scan' method, in sub-class.
     def _scan(self, file):
-        return []
+        pass
 
 
 class LineScanner(Base):
