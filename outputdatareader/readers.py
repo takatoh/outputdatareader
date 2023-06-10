@@ -8,7 +8,10 @@ class Base():
             self.setup()
             try:
                 for line in self.scanner:
-                    self.loop(line)
+                    try:
+                        self.loop(line)
+                    except ContinueToNextLoop:
+                        pass
             except ExitLoop:
                 pass
             self.teardown()
@@ -39,9 +42,15 @@ class Base():
     def _exit_read(self):
         raise ExitRead()
 
+    def _next_loop(self):
+        raise ContinueToNextLoop()
+
 
 class ExitLoop(Exception):
     pass
 
 class ExitRead(Exception):
+    pass
+
+class ContinueToNextLoop(Exception):
     pass
