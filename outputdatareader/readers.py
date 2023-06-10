@@ -45,6 +45,9 @@ class Base():
     def _next_loop(self):
         raise ContinueToNextLoop()
 
+    def _unshift(self):
+        self.scanner.unshift()
+
 
 class ExitLoop(Exception):
     pass
