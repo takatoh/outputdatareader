@@ -2,8 +2,8 @@ import csv
 
 
 class Base():
-    def __init__(self, file, bufsize=5):
-        self.content = self._scan(file)
+    def __init__(self, file, bufsize=5, encoding='utf-8'):
+        self.content = self._scan(file, encoding)
         self.buf = []
         self.bufsize = bufsize
 
@@ -28,15 +28,15 @@ class Base():
 
 
 class LineScanner(Base):
-    def _scan(self, file):
-        with open(file, 'r') as f:
+    def _scan(self, file, encoding):
+        with open(file, 'r', encoding=encoding) as f:
             content = f.readlines()
         return content
 
 
 class CsvScanner(Base):
-    def _scan(self, file):
-        with open(file, 'r') as csv_file:
+    def _scan(self, file, encoding):
+        with open(file, 'r', encoding=encoding) as csv_file:
             reader = csv.reader(csv_file)
             content = list(reader)
         return content
