@@ -49,11 +49,14 @@ class Base():
         self.scanner.unshift()
 
 
-class ExitLoop(Exception):
+class ReaderException(Exception):
     pass
 
-class ExitRead(Exception):
+class ExitLoop(ReaderException):
     pass
 
-class ContinueToNextLoop(Exception):
+class ExitRead(ReaderException):
+    pass
+
+class ContinueToNextLoop(ReaderException):
     pass
