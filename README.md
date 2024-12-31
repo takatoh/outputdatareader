@@ -63,6 +63,52 @@ outputdatareader は2つのステージから成ります。
 
 `outputodatareader.scanners` モジュールには、1行ずつに分解する `LineScanner` と、CSVファイルを1レコードずつに分解する `CsvScanner` が用意されています。
 
+## Example
+
+```python
+from outputdatareader.scanners import LineScanner
+from outputdatareader.readers import Base
+
+
+class MainReader(Base):
+    def loop(self, line):
+        if line.statswith('Section 2'):
+            self._unshift()
+            reader = Section2Reader(self.scanner, {})
+            self.holder['section_2'] = reader.read()
+        elif line.statswith('Section 5'):
+            self._unshift()
+            reader = Section5Reader(self.scanner, {})
+            self.holder['section_5'] = reader.read()
+        else:
+            # ignore other sections
+            pass
+
+
+class Section2Reader(Base):
+    def loop(self, line):
+        if line.startswith('Section 3'):
+            self._exit_read()
+        else:
+            # implement here
+
+
+class Section5Reader(Base):
+    def loop(self, line):
+        # implement here
+
+
+def main():
+    scanner = LineScanner('some_output.txt', encoding='utf-8')
+    result_holder = {}
+    reader = MainReader(scanner, result_holder)
+    result = reader.read()
+    print(result)
+
+
+main()
+```
+
 ## License
 
 MIT License.
