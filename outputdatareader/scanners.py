@@ -23,19 +23,19 @@ class Base():
         return self.content[0]
 
     # Override this '_scan' method, in sub-class.
-    def _scan(self, file):
+    def _scan(self, file, encoding='utf-8'):
         pass
 
 
 class LineScanner(Base):
-    def _scan(self, file, encoding):
+    def _scan(self, file, encoding='utf-8'):
         with open(file, 'r', encoding=encoding) as f:
             content = f.readlines()
         return content
 
 
 class CsvScanner(Base):
-    def _scan(self, file, encoding):
+    def _scan(self, file, encoding='utf-8'):
         with open(file, 'r', encoding=encoding) as csv_file:
             reader = csv.reader(csv_file)
             content = list(reader)
